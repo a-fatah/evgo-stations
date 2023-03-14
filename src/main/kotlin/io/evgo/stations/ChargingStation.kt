@@ -1,5 +1,6 @@
 package io.evgo.stations
 
+import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
 
 data class ChargingStation(
@@ -47,3 +48,7 @@ data class Pricing(
     val currency: String,
     val pricePerKwh: Double
 )
+
+
+interface ChargingStationRepository: JpaRepository<ChargingStation, Int> {
+}
