@@ -1,0 +1,73 @@
+databaseChangeLog:
+  - changeSet:
+      id: 06-add-amenity-table
+      author: abdul
+      preConditions:
+          - onFail: MARK_RAN
+          - not:
+              tableExists:
+                tableName: amenity
+      rollback:
+          dropTable:
+              tableName: amenity
+      changes:
+          - createTable:
+              tableName: amenity
+              columns:
+                  - column:
+                      name: id
+                      type: int
+                      autoIncrement: true
+                      constraints:
+                          primaryKey: true
+                          nullable: false
+                  - column:
+                      name: name
+                      type: varchar(255)
+                      constraints:
+                          nullable: false
+
+  - changeSet:
+      id: 07-add-charging-station-amenity-table
+      author: abdul
+      preConditions:
+          - onFail: MARK_RAN
+          - not:
+              tableExists:
+                tableName: charging_station_amenity
+      rollback:
+          dropTable:
+              tableName: charging_station_amenity
+      changes:
+          - createTable:
+              tableName: charging_station_amenity
+              columns:
+                  - column:
+                      name: id
+                      type: int
+                      autoIncrement: true
+                      constraints:
+                          primaryKey: true
+                          nullable: false
+                  - column:
+                      name: station_id
+                      type: int
+                      constraints:
+                          nullable: false
+                  - column:
+                      name: amenity_id
+                      type: int
+                      constraints:
+                          nullable: false
+                  - addForeignKeyConstraint:
+                      baseTableName: charging_station_amenity
+                      baseColumnNames: station_id
+                      constraintName: fk_station_id
+                      referencedTableName: charging_station
+                      referencedColumnNames: id
+                  - addForeignKeyConstraint:
+                      baseTableName: charging_station_amenity
+                      baseColumnNames: amenity_id
+                      constraintName: fk_amenity_id
+                      referencedTableName: amenity
+                      referencedColumnNames: id

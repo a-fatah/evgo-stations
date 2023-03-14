@@ -37,7 +37,7 @@ databaseChangeLog:
             baseTableName: charging_station_connector
             baseColumnNames: station_id
             constraintName: fk_station_id
-            referencedTableName: station
+            referencedTableName: charging_station
             referencedColumnNames: id
         - addForeignKeyConstraint:
             baseTableName: charging_station_connector

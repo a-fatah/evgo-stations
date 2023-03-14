@@ -1,18 +1,18 @@
 databaseChangeLog:
   - changeSet:
-      id: create-station-table
+      id: create-charging-station-table
       author: abdul
       preConditions:
         - onFail: MARK_RAN
         - not:
             tableExists:
-              tableName: station
+              tableName: charging_station
       rollback:
         dropTable:
-          tableName: station
+          tableName: charging_station
       changes:
         - createTable:
-            tableName: station
+            tableName: charging_station
             columns:
               - column:
                   name: id
