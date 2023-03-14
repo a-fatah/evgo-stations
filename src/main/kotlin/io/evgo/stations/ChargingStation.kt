@@ -4,6 +4,7 @@ import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.rest.core.annotation.RepositoryRestResource
 import java.time.LocalDate
 
 @Entity
@@ -63,5 +64,6 @@ enum class ConnectorType {
 interface ConnectorRepository: JpaRepository<Connector, Int> {
 }
 
+@RepositoryRestResource
 interface ChargingStationRepository: JpaRepository<ChargingStation, Int> {
 }
