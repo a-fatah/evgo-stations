@@ -1,7 +1,9 @@
 package io.evgo.stations
 
+import java.util.UUID
+
 data class ChargingStation(
-    val id: String,
+    val id: Int,
     val name: String,
     val address: String,
     val location: Location,
@@ -14,7 +16,7 @@ data class ChargingStation(
 )
 
 data class Connector(
-    val id: String,
+    val id: Int,
     val type: ConnectorType,
     val power: Int,
     val status: ConnectorStatus
