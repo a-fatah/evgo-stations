@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-station-table
+      author: abdul
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: station
+      rollback:
+        dropTable:
+          tableName: station
+      changes:
+        - createTable:
+            tableName: station
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: location
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amenities
+                  type: varchar(255)
+              - column:
+                  name: opening_hours
+                  type: varchar(255)
+              - column:
+                  name: rating
+                  type: decimal(2,1)

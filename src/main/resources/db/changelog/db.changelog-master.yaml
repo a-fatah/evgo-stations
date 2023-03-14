@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+        file: 02-create-station-table.yaml
+        relativeToChangelogFile: true
+  - include:
+      file: 03-create-connector-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 04-add-seed-data.sql
+      relativeToChangelogFile: true

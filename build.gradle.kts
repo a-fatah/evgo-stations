@@ -28,7 +28,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("de.codecentric:spring-boot-admin-starter-server")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    // add test dependencies here
+    implementation("org.liquibase:liquibase-core:4.20.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("com.h2database:h2")
 

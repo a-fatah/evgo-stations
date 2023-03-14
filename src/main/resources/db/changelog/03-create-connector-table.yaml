@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-connector-table
+      author: abdul
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: connector
+      rollback:
+        dropTable:
+          tableName: connector
+      changes:
+        - createTable:
+            tableName: connector
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: connector_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: power
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: int
+                  constraints:
+                      nullable: false
+              - column:
+                  name: status
+                  type: varchar(255)
