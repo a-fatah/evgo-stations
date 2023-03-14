@@ -4,13 +4,14 @@ services:
     container_name: stations-mysql
     image: mysql:latest
     restart: always
+
     ports:
       - "3306:3306"
     environment:
       - MYSQL_DATABASE=stations
-      - MYSQL_USER=stations-service
-      - MYSQL_PASSWORD=123456
-      - MYSQL_ROOT_PASSWORD=s3cr3t
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql-data:/var/lib/mysql
 
