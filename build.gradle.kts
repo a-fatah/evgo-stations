@@ -7,8 +7,9 @@ plugins {
     kotlin("plugin.spring") version "1.7.22"
     kotlin("plugin.jpa") version "1.7.22"
     kotlin("plugin.allopen") version "1.7.22"
-}
+    id("com.google.cloud.tools.jib") version "3.1.4"
 
+}
 
 group = "io.evgo"
 version = "0.0.1-SNAPSHOT"
@@ -16,6 +17,16 @@ java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
+}
+
+jib {
+    from {
+        image = "openjdk:17-jdk-alpine"
+    }
+    to {
+        image = "stations"
+        tags = setOf("$version")
+    }
 }
 
 extra["springBootAdminVersion"] = "3.0.0-M4"
