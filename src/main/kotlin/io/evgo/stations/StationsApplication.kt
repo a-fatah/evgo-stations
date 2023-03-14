@@ -84,27 +84,6 @@ class StationsApplication {
 
 
 fun main(args: Array<String>) {
-
-    val locations = listOf(
-        "Alexander Platz 1, 10178 Berlin",
-        "Kurfürstendamm 1, 10719 Berlin",
-        "Friedrichstraße 1, 10117 Berlin",
-        "Potsdamer Platz 1, 10785 Berlin",
-        "Unter den Linden 1, 10117 Berlin",
-        "Karl-Liebknecht-Straße 1, 10178 Berlin",
-        "Leipziger Platz 1, 10117 Berlin",
-    )
-
-    val connectorTypes = listOf(
-        ConnectorType.TYPE_2,
-        ConnectorType.CCS,
-        ConnectorType.DC_FAST,
-    )
-
-    //
-
-
-
     runApplication<StationsApplication>(*args)
 }
 
