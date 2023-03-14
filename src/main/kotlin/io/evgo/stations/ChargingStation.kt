@@ -14,7 +14,12 @@ data class ChargingStation(
     val name: String = "",
     val address: String = "",
     val location: String = "", // will be a geo-location
-    @OneToMany
+    @ManyToMany(cascade = [CascadeType.ALL])
+    @JoinTable(
+        name = "charging_station_connector",
+        joinColumns = [JoinColumn(name = "station_id")],
+        inverseJoinColumns = [JoinColumn(name = "connector_id")]
+    )
     val connectors: List<Connector> = emptyList(),
     @ElementCollection
     val amenities: List<String> = emptyList(),

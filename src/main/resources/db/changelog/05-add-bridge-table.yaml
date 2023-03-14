@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05-add-bridge-table
+      author: abdul
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            tableExists:
+              tableName: charging_station_connector
+
+      rollback:
+        dropTable:
+          tableName: charging_station_connector
+
+      changes:
+        - createTable:
+            tableName: charging_station_connector
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: station_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: connector_id
+                  type: int
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: charging_station_connector
+            baseColumnNames: station_id
+            constraintName: fk_station_id
+            referencedTableName: station
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: charging_station_connector
+            baseColumnNames: connector_id
+            constraintName: fk_connector_id
+            referencedTableName: connector
+            referencedColumnNames: id
