@@ -1,5 +1,20 @@
 version: '3.1'
 services:
+  stations:
+    container_name: stations
+    image: stations:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+      - STATIONS_MYSQL_HOST=mysql
+      - STATIONS_MYSQL_PORT=3306
+      - STATIONS_DB_NAME=stations
+      - STATIONS_MYSQL_USER=${MYSQL_USER}
+      - STATIONS_MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      - mysql
   mysql:
     container_name: stations-mysql
     image: mysql:latest
