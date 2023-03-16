@@ -86,4 +86,3 @@ class StationsApplication {
 fun main(args: Array<String>) {
     runApplication<StationsApplication>(*args)
 }
-
