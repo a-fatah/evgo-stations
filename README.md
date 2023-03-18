@@ -18,5 +18,12 @@ You need to define the following environment variables:
 * `MYSQL_ROOT_PASSWORD` - the root password for the mysql database
 * `MYSQL_DATABASE` - the name of the database to create on startup 
 
+Or you can create an `.env` file in the root directory and add the following:
+
+    MYSQL_USER=<<username>>
+    MYSQL_PASSWORD=<<password>>
+    MYSQL_ROOT_PASSWORD=<<root password>>
+    MYSQL_DATABASE=<<database name>>
+
 The service will be available at `http://localhost:8080`.
 
