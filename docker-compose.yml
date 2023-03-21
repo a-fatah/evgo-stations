@@ -8,14 +8,16 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=local
-      - STATIONS_MYSQL_HOST=mysql
-      - STATIONS_MYSQL_PORT=3306
-      - STATIONS_DB_NAME=stations
-      - STATIONS_MYSQL_USER=${MYSQL_USER}
-      - STATIONS_MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=mysql-db
+      - MYSQL_PORT=3306
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/stations
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
-      - mysql
-  mysql:
+      - mysql-db
+    networks:
+      - evgo-network
+  mysql-db:
     container_name: stations-mysql
     image: mysql:latest
     restart: always
@@ -28,7 +30,10 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
-      - mysql-data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - evgo-network
 
-volumes:
-  mysql-data:
+networks:
+  evgo-network:
+    driver: bridge
