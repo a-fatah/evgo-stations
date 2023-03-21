@@ -8,7 +8,7 @@ plugins {
     kotlin("plugin.jpa") version "1.7.22"
     kotlin("plugin.allopen") version "1.7.22"
     id("com.google.cloud.tools.jib") version "3.1.4"
-
+    id("org.graalvm.buildtools.native") version "0.9.20"
 }
 
 group = "io.evgo"
