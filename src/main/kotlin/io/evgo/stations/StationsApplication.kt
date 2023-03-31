@@ -1,11 +1,12 @@
 package io.evgo.stations
 
+import org.locationtech.jts.geom.Coordinate
+import org.locationtech.jts.geom.GeometryFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
-import org.springframework.data.geo.Point
 import java.util.*
 
 @SpringBootApplication
@@ -33,7 +34,8 @@ class StationsApplication {
         val points = locations.map { location ->
             val latitude = random.nextDouble(52.3, 52.6)
             val longitude = random.nextDouble(13.2, 13.7)
-            Point(latitude, longitude) to location
+            val point = GeometryFactory().createPoint(Coordinate(longitude, latitude))
+            point to location
         }
 
         val connectorTypes = listOf(
