@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.data.geo.Point
+import java.util.*
 
 @SpringBootApplication
 class StationsApplication {
@@ -25,6 +27,14 @@ class StationsApplication {
             "Karl-Liebknecht-Straße 1, 10178 Berlin",
             "Leipziger Platz 1, 10117 Berlin",
         )
+
+        val random = Random()
+
+        val points = locations.map { location ->
+            val latitude = random.nextDouble(52.3, 52.6)
+            val longitude = random.nextDouble(13.2, 13.7)
+            Point(latitude, longitude) to location
+        }
 
         val connectorTypes = listOf(
             ConnectorType.TYPE_1,
@@ -67,10 +77,10 @@ class StationsApplication {
             return randomAmenities
         }
 
-        locations.forEach { location ->
+        points.forEach { (point, location) ->
             val station = ChargingStation(
                 name = "Station $location",
-                location = location,
+                location = point,
                 connectors = connectors,
                 amenities = randomAmenities(),
                 openingHours = listOf("Mo-Fr 8-18", "Sa 10-16").joinToString(", "),

@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 07-modify-location-data-type
+      author: abdul
+      preConditions:
+          - onFail: MARK_RAN
+          - not:
+              tableExists:
+                tableName: charging_station
+      rollback:
+          - modifyDataType:
+              tableName: charging_station
+              columnName: location
+              newDataType: varchar(255)
+      changes:
+          - modifyDataType:
+              tableName: charging_station
+              columnName: location
+              newDataType: geometry(Point, 4326)
