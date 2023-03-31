@@ -2,11 +2,6 @@ databaseChangeLog:
   - changeSet:
       id: 07-modify-location-data-type
       author: abdul
-      preConditions:
-          - onFail: MARK_RAN
-          - not:
-              tableExists:
-                tableName: charging_station
       rollback:
           - modifyDataType:
               tableName: charging_station

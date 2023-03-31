@@ -1,6 +1,8 @@
 package io.evgo.stations
 
 import jakarta.persistence.*
+import org.locationtech.jts.geom.Point
+
 
 @Entity
 data class ChargingStation(
@@ -8,7 +10,8 @@ data class ChargingStation(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int? = null,
     val name: String = "",
-    val location: String = "", // will be a geo-location
+    @Column(columnDefinition = "geometry(Point,4326)")
+    val location: Point? = null, // will be a geo-location
     @ManyToMany
     @JoinTable(
         name = "charging_station_connector",
