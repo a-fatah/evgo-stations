@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 08-add-address-column
+      author: abdul
+      rollback:
+          - dropColumn:
+              tableName: charging_station
+              columnName: address
+              newDataType: varchar(255)
+      changes:
+          - addColumn:
+              tableName: charging_station
+              columns:
+                  - column:
+                      name: address
+                      type: varchar(255)

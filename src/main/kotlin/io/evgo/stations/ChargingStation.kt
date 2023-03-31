@@ -10,6 +10,7 @@ data class ChargingStation(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int? = null,
     val name: String = "",
+    val address: String = "",
     @Column(columnDefinition = "geometry(Point,4326)")
     val location: Point? = null, // will be a geo-location
     @ManyToMany
