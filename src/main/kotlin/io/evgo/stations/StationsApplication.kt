@@ -79,9 +79,27 @@ class StationsApplication {
             return randomAmenities
         }
 
+        // create a method to generate random realistic station names
+        fun randomStationName(): String {
+            val random = Random()
+            val randomName = StringBuilder()
+            val consonants = "bcdfghjklmnpqrstvwxyz"
+            val vowels = "aeiou"
+            val length = random.nextInt(3, 6)
+            for (i in 0 until length) {
+                if (i % 2 == 0) {
+                    randomName.append(consonants[random.nextInt(consonants.length)])
+                } else {
+                    randomName.append(vowels[random.nextInt(vowels.length)])
+                }
+            }
+            return randomName.toString().capitalize()
+        }
+
         points.forEach { (point, location) ->
             val station = ChargingStation(
-                name = "Station $location",
+                name = randomStationName(),
+                address = location,
                 location = point,
                 connectors = connectors,
                 amenities = randomAmenities(),
