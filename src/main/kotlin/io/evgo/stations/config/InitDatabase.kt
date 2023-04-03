@@ -1,5 +1,9 @@
-package io.evgo.stations
+package io.evgo.stations.config
 
+import io.evgo.stations.*
+import io.evgo.stations.model.Amenity
+import io.evgo.stations.model.ChargingStation
+import io.evgo.stations.repository.StationsRepository
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.springframework.boot.CommandLineRunner
@@ -10,7 +14,7 @@ import java.util.*
 @Component
 @ConditionalOnProperty(name = ["init-db"], havingValue = "true")
 class InitDatabase(
-    private val stationsRepository: ChargingStationRepository,
+    private val stationsRepository: StationsRepository,
     private val connectorRepository: ConnectorRepository
 ): CommandLineRunner {
 

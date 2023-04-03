@@ -1,7 +1,6 @@
-package io.evgo.stations
+package io.evgo.stations.controller
 
 import org.springframework.data.rest.webmvc.RepositoryRestController
-import org.springframework.web.bind.annotation.GetMapping
 
 
 @RepositoryRestController

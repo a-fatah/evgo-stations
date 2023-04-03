@@ -1,4 +1,4 @@
-package io.evgo.stations
+package io.evgo.stations.model
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

@@ -1,4 +1,4 @@
-package io.evgo.stations
+package io.evgo.stations.config
 
 import org.locationtech.jts.geom.Point
 import org.springframework.context.annotation.Bean

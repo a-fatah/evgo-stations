@@ -1,5 +1,6 @@
-package io.evgo.stations
+package io.evgo.stations.model
 
+import io.evgo.stations.Connector
 import jakarta.persistence.*
 import org.locationtech.jts.geom.Point
 
@@ -12,7 +13,7 @@ data class ChargingStation(
     val name: String = "",
     val address: String = "",
     @Column(columnDefinition = "geometry(Point,4326)")
-    val location: Point? = null, // will be a geo-location
+    val location: Point? = null, // will be a geolocation
     @ManyToMany
     @JoinTable(
         name = "charging_station_connector",
