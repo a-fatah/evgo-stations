@@ -23,33 +23,33 @@ Charging station model contains the following fields:
 
 The station model is represented as JSON as follows:
 
-{
-  "id": 1,
-  "name": "ChargePoint",
-  "location": "37.7749, 122.4194",
-  "connectors": [
     {
       "id": 1,
-      "type": "J1772"
-    },
-    {
-      "id": 2,
-      "type": "CHAdeMO"
+      "name": "ChargePoint",
+      "location": "37.7749, 122.4194",
+      "connectors": [
+        {
+          "id": 1,
+          "type": "J1772"
+        },
+        {
+          "id": 2,
+          "type": "CHAdeMO"
+        }
+      ],
+      "amenities": [
+        {
+          "id": 1,
+          "name": "Restroom"
+        },
+        {
+          "id": 2,
+          "name": "WiFi"
+        }
+      ],
+      "openingHours": "Mon-Sun 24hrs",
+      "rating": 4.5
     }
-  ],
-  "amenities": [
-    {
-      "id": 1,
-      "name": "Restroom"
-    },
-    {
-      "id": 2,
-      "name": "WiFi"
-    }
-  ],
-  "openingHours": "Mon-Sun 24hrs",
-  "rating": 4.5
-}
 
 ### Connector
 
