@@ -14,3 +14,9 @@ databaseChangeLog:
   - include:
       file: 06-add-amenity-table.yaml
       relativeToChangelogFile: true
+  - include:
+      file: 07-modify-location-column.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: 08-add-address-column.yaml
+      relativeToChangelogFile: true

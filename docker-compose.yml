@@ -8,29 +8,28 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=local
-      - MYSQL_HOST=mysql-db
+      - MYSQL_HOST=stations-db
       - MYSQL_PORT=3306
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/stations
-      - SPRING_DATASOURCE_USERNAME=${MYSQL_USER}
-      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stations-db:3306/stations
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
     depends_on:
-      - mysql-db
+      - stations-db
     networks:
       - evgo-network
-  mysql-db:
-    container_name: stations-mysql
-    image: mysql:latest
+  stations-db:
+    container_name: stations-db
+    image: postgis/postgis:11-3.3-alpine
     restart: always
 
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
-      - MYSQL_DATABASE=stations
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=stations
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./db_data:/var/lib/postgresql/data
     networks:
       - evgo-network
 
