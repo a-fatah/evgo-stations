@@ -2,6 +2,55 @@
 
 This is a simple service that provides a list of stations and their current status.
 
+### Charging Station
+
+Charging station model contains the following fields:
+
+* id - an identifier for the station (integer)
+
+* name - a string that represents the name of the station
+
+* location - a string that represents the geo location of the station
+
+* connectors - a list of connectors that are available at the station
+
+* amenities - a list of amenities that are available at the station
+
+* openingHours - specifies the hours during which charging station is open
+
+* rating - a double that represents the rating of the station
+
+
+The station model is represented as JSON as follows:
+
+{
+  "id": 1,
+  "name": "ChargePoint",
+  "location": "37.7749, 122.4194",
+  "connectors": [
+    {
+      "id": 1,
+      "type": "J1772"
+    },
+    {
+      "id": 2,
+      "type": "CHAdeMO"
+    }
+  ],
+  "amenities": [
+    {
+      "id": 1,
+      "name": "Restroom"
+    },
+    {
+      "id": 2,
+      "name": "WiFi"
+    }
+  ],
+  "openingHours": "Mon-Sun 24hrs",
+  "rating": 4.5
+}
+
 ### Connector
 
 Conector is an entity and has an id field that is an integer and is generated automatically using the GenerationType.IDENTITY strategy. 
