@@ -1,6 +1,24 @@
 ## Stations Service
 
-This is a simple service that provides a list of stations and their current status.
+This is a REST API service that provides information about charging stations and connectors. It is built using Spring Boot and uses a Postgres database to store the data.
+
+It uses Postgis to store the location of the stations. The location is stored as a Point object, which is a Postgis type. 
+
+### Endpoints
+
+The service has the following endpoint for CRUD operations on stations and connector:
+
+* `GET /stations` - returns a list of all stations
+* `GET /stations/{id}` - returns a station with the given id
+* `GET /stations/{id}/connectors` - returns a list of connectors for the station with the given id
+* `GET /stations/{id}/amenities` - returns a list of amenities for the station with the given id
+* `GET /stations/{id}/connectors/{connectorId}` - returns a connector with the given id for the station with the given id
+* `POST /stations` - creates a new station
+* `POST /stations/{id}/connectors` - creates a new connector for the station with the given id
+* `PUT /stations/{id}` - updates the station with the given id
+* `PUT /stations/{id}/connectors/{connectorId}` - updates the connector with the given id for the station with the given id
+* `DELETE /stations/{id}` - deletes the station with the given id
+* `DELETE /stations/{id}/connectors/{connectorId}` - deletes the connector with the given id for the station with the given id
 
 ### Charging Station
 
