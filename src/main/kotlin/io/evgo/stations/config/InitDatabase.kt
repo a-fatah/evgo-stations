@@ -35,6 +35,7 @@ class InitDatabase(
             val latitude = random.nextDouble(52.3, 52.6)
             val longitude = random.nextDouble(13.2, 13.7)
             val point = GeometryFactory().createPoint(Coordinate(longitude, latitude))
+            point.srid = 4326
             point to location
         }
 

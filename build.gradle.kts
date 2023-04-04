@@ -44,7 +44,7 @@ dependencies {
     implementation("de.codecentric:spring-boot-admin-starter-server")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.liquibase:liquibase-core:4.20.0")
-    testImplementation("com.h2database:h2")
+    implementation("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
