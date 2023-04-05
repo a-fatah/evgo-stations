@@ -2,6 +2,8 @@ package io.evgo.stations.repository
 
 import io.evgo.stations.model.ChargingStation
 import org.locationtech.jts.geom.Point
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
@@ -12,6 +14,7 @@ interface StationsRepository: JpaRepository<ChargingStation, Int> {
   @Query("SELECT c FROM ChargingStation c WHERE ST_Distance(c.location, :point) < :radius")
   fun findNearbyChargingStations(
     @Param("point") point: Point?,
-    @Param("radius") radius: Double
-  ): List<ChargingStation>
+    @Param("radius") radius: Double,
+    pageable: Pageable
+  ): Page<ChargingStation>
 }
