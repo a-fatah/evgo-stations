@@ -3,6 +3,7 @@ package io.evgo.stations.config
 import io.evgo.stations.*
 import io.evgo.stations.model.Amenity
 import io.evgo.stations.model.ChargingStation
+import io.evgo.stations.repository.AmenitiesRepository
 import io.evgo.stations.repository.StationsRepository
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
@@ -15,7 +16,8 @@ import java.util.*
 @ConditionalOnProperty(name = ["init-db"], havingValue = "true")
 class InitDatabase(
     private val stationsRepository: StationsRepository,
-    private val connectorRepository: ConnectorRepository
+    private val connectorRepository: ConnectorRepository,
+    private val amenitiesRepository: AmenitiesRepository,
 ): CommandLineRunner {
 
     override fun run(vararg args: String?) {
@@ -40,6 +42,7 @@ class InitDatabase(
         }
 
         val connectors = connectorRepository.saveAll(randomConnectors())
+        val amenities = amenitiesRepository.saveAll(randomAmenities())
 
         points.forEach { (point, location) ->
             val station = ChargingStation(
@@ -47,7 +50,7 @@ class InitDatabase(
                 address = location,
                 location = point,
                 connectors = connectors,
-                amenities = randomAmenities(),
+                amenities = amenities,
                 openingHours = listOf("Mo-Fr 8-18", "Sa 10-16").joinToString(", "),
                 rating = Math.random() * 5
             )

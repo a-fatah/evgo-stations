@@ -14,14 +14,14 @@ data class ChargingStation(
     val address: String = "",
     @Column(columnDefinition = "geometry(Point,4326)")
     val location: Point? = null, // will be a geolocation
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "charging_station_connector",
         joinColumns = [JoinColumn(name = "station_id")],
         inverseJoinColumns = [JoinColumn(name = "connector_id")]
     )
     val connectors: List<Connector> = emptyList(),
-    @ManyToMany(cascade = [CascadeType.ALL])
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "charging_station_amenity",
         joinColumns = [JoinColumn(name = "station_id")],
