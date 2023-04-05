@@ -9,9 +9,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource
 
 @RepositoryRestResource(path="stations", itemResourceRel = "station", collectionResourceRel = "stations")
 interface StationsRepository: JpaRepository<ChargingStation, Int> {
-  @Query("SELECT c FROM ChargingStation c WHERE ST_Distance(c.location, :point) < :distance")
+  @Query("SELECT c FROM ChargingStation c WHERE ST_Distance(c.location, :point) < :radius")
   fun findNearbyChargingStations(
     @Param("point") point: Point?,
-    @Param("distance") distance: Double
+    @Param("radius") radius: Double
   ): List<ChargingStation>
 }
